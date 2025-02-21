@@ -6,18 +6,18 @@ from PIL import Image
 class Client(models.Model):
     first_name = models.CharField('Name', max_length=100)
     last_name = models.CharField('Surname', max_length=100)
-    email = models.EmailField('Email', unique=True, max_length=255)
-    phone_number = models.IntegerField()
-    address = models.CharField(max_length=50)
+    # email = models.EmailField('Email', unique=True, max_length=255)
+    phone_number = models.IntegerField(null=True, blank=True)
+    address = models.CharField(max_length=50, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.user} {self.first_name} {self.last_name}"
 
 
 class Category(models.Model):

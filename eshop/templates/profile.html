@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
-{% block title %}Profile - E-shop{% endblock %}
-{% block content %}
-<div>
-<img class="rounded-circle"
-        src="{{ user.profile.picture.url }}" />
-<h2>{{ user.username }}</h2>
-<p> {{ user.email }} </p>
- </div>
 
-<div>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ u_form }}
-        {{ p_form }}
-        <div>
-            <input type="submit" class="btn btn-outline-success" value="Save changes"/>
-            <a href="{% url 'home' %}" class="btn btn-outline-primary">Main page</a>
-        </div>
-    </form>
-</div>
+{% block title %}Profile - E-shop{% endblock %}
+
+{% block content %}
+  <h2>{{ user.username }}'s Profile</h2>
+  <img src="{{ user.profile.picture.url }}" alt="{{ user.username }}'s profile picture" class="rounded-circle">
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="id_email">Email</label>
+      {{ u_form.email }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_picture">Profile Picture</label>
+      {{ p_form.picture }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_address">Address</label>
+      {{ c_form.address }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_phone_number">Phone Number</label>
+      {{ c_form.phone_number }}
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-success">Save changes</button>
+      <a href="{% url 'home' %}" class="btn btn-outline-primary">Main page</a>
+    </div>
+  </form>
+
 {% endblock %}

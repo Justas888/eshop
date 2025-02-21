@@ -18,3 +18,7 @@ admin.site.register(OrderItem)
 admin.site.register(Profile)
 
 
+# search laukas atjungtam profiliui isjungtas
+# profilio redagavimas su visais laukais
+# i krepseli pridejimas to paties produkto kelis kartus
+# jei pavyks  checkouta sutvarkyti

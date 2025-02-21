@@ -71,7 +71,7 @@
                 <a class="nav-link" href="{% url 'cart' %}">
                 Cart (<span id="cart-count">{{ request.session.cart|length }}</span>)
                 </a>
-              </li>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
@@ -84,10 +84,8 @@
             </li>
           {% endif %}
 
-            <li class="nav-item">
-
-            </li>
           </ul>
+            {% if user.is_authenticated %}
             <form
             class="form-inline my-2 my-lg-0"
             action="{% url 'search' %}"
@@ -104,6 +102,7 @@
               Search
             </button>
           </form>
+            {% endif %}
         </div>
       </div>
     </nav>
