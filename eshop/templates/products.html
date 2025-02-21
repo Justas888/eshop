@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Products - E-shop{% endblock %}
+{% block content %}
+<h1>All Products</h1>
+
+<div class="row">
+    {% for product in products %}
+        <div class="col-sm-6 col-md-3 d-flex align-items-stretch">
+            <div class="card mb-4 shadow">
+                <div class="card-img-wrapper">
+                    {% if product.foto %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top" src="{{ product.foto.url }}" alt="{{ product.name }}"/>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top" src="{% static 'img/no-image.png' %}" alt="{{ product.name }}"/>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">{{ product.name }}</h6>
+                    <p class="card-text"><b>{{ product.one_price }} Eur</b></p>
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+      {% if products.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ products.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ products.number }} of {{ products.paginator.num_pages }}.
+      </span>
+
+      {% if products.has_next %}
+        <a href="?page={{ products.next_page_number }}">next</a>
+        <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+</div>
+{% endblock %}

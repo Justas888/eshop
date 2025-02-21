@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Main page - eShop{% endblock %}
+
+{% block content %}
+   {% if user.username %}
+    <h1>Welcome {{ user.username }}</h1>
+<p>We're glad you made it!</p>
+<p>Go ahead and check our products and if you find something you love, buy it!</p>
+{% else %}
+    <h1>Welcome, guest</h1>
+<p>Please login or register to check our eShop content.</p>
+{% endif %}
+{% endblock %}

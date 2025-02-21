@@ -1,0 +1,108 @@
+body {
+    background-color: #a1c7ab;
+}
+
+.sidebar-nav {
+    list-style: none;
+    margin-top: 10px;
+}
+
+
+.card {
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-body {
+  text-align: center;
+  padding: 10px 10px 5px 10px;
+  flex-grow: 1;
+}
+
+
+.card img {
+  height: 75%;
+  object-fit: contain;
+}
+
+.card-img-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0;
+}
+
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.pagination .current {
+  font-weight: bold;
+}
+
+.category img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .pagination {
+    font-size: 0.9rem;
+  }
+}
+
+.category-product .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.category-product .col-sm-6, .category-product .col-md-3 {
+  flex: 1 1 calc(50% - 15px); /* Dvi kortelės eilėje */
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .category-product .col-sm-6 {
+    flex: 1 1 calc(50% - 15px);
+  }
+  .category-product .col-md-3 {
+    flex: 1 1 calc(25% - 15px);
+  }
+}

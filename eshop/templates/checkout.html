@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Checkout</h1>
+  <p>Thank you for your order! Please fill in your details to complete the purchase.</p>
+
+  <!-- Forma užsakymui atlikti (pavyzdys) -->
+  <form method="POST">
+    {% csrf_token %}
+    <p> {{ user.username }} </p>
+    <p> </p>
+    <button type="submit" class="btn btn-primary">Complete Order</button>
+  </form>
+{% endblock %}
