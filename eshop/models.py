@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 class Client(models.Model):
@@ -9,6 +10,7 @@ class Client(models.Model):
     phone_number = models.IntegerField()
     address = models.CharField(max_length=50)
     created_date = models.DateTimeField(auto_now_add=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Client'
@@ -26,7 +28,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
 
     def __str__(self):
         return self.name
@@ -61,13 +62,7 @@ class Order(models.Model):
                               blank=True,
                               help_text='Order is pending')
     clients = models.ForeignKey(Client, on_delete=models.CASCADE)
-    # status = models.CharField(max_length=50, choices=STATUS_ORDER)
-    # total_price = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
-
-    # @property
-    # def total_price(self):
-    #
 
     class Meta:
         verbose_name = 'Order'
@@ -96,8 +91,9 @@ class Review(models.Model):
     def __str__(self):
         return f"Review by {self.clients} for {self.products.name}"
 
+
 class Profile(models.Model):
-    picture = models.ImageField(upload_to='profile_pics', blank=True, default='default-user.png')
+    picture = models.ImageField(upload_to='profile_pics', blank=True, default='default_user.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -105,8 +101,8 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        # if self.picture.path:
-        #     img = Image.open(self.picture.path)
-        #     thumb_size = (150, 150)
-        #     img.thumbnail(thumb_size)
-        #     img.save(self.picture.path)
+        if self.picture.path:
+            img = Image.open(self.picture.path)
+            thumb_size = (150, 150)
+            img.thumbnail(thumb_size)
+            img.save(self.picture.path)

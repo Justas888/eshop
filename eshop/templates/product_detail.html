@@ -19,6 +19,10 @@
             <p><strong>Category:</strong>
                 <a href="{% url 'category_products' product.categories.id %}">
                 {{ product.categories.name }}
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
                 </a>
             </p>
         </div>

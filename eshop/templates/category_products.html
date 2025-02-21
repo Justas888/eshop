@@ -20,6 +20,12 @@
                   <div class="card-body">
                       <h6 class="card-subtitle mb-2 text-muted">{{ product.name }}</h6>
                       <h6 class="card-subtitle mb-2 text-muted"><b>{{ product.one_price }} Eur.</b></h6>
+                      <div class="card-body">
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </div>
                   </div>
               </div>
           </div>

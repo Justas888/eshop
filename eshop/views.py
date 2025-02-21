@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.template.loader import render_to_string
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from datetime import datetime
@@ -135,24 +135,26 @@ def add_to_cart(request, product_id):
 
     request.session['cart'] = cart
     messages.success(request, f"Product {product.name} has been added to the cart!")
-    return redirect('products')  # Nukreipia atgal į prekių puslapį
+    return redirect('products')
 
 
 @login_required
 def remove_from_cart(request, product_id):
     cart = request.session.get('cart', {})
-    if product_id in cart:
-        del cart[product_id]
+    if str(product_id) in cart:
+        del cart[str(product_id)]
         request.session['cart'] = cart
-        messages.success(request, "Product is removed from your cart.")
-    return redirect('cart')  # Nukreipia į krepšelio puslapį
+        messages.success(request, "Product has been removed from cart.")
+    else:
+        messages.error(request, "Cannot find product in the cart.")
+    return redirect('cart')
 
 
-# Krepšelio puslapis
 def view_cart(request):
     cart = request.session.get('cart', {})
     total_price = sum(item['price'] * item['quantity'] for item in cart.values())
     return render(request, 'cart.html', {'cart': cart, 'total_price': total_price})
+
 
 @login_required
 def checkout(request):
@@ -163,15 +165,20 @@ def checkout(request):
         order_items.delete()
         order.status = 'Completed'
         order.save()
-
+        email_subject = "Your Order Confirmation"
+        email_message = render_to_string('order_confirmation.html', {
+            'order': order,
+            'user': request.user,
+        })
         send_mail(
-            'Your Order Confirmation',
-            'Thank you for your order! The payment instructions have been sent to your email.',
+            email_subject,
+            email_message,
             settings.DEFAULT_FROM_EMAIL,
             [request.user.email],
             fail_silently=False,
         )
-        messages.info(request, "Your order has been placed successfully and payment instructions have been sent to your email.")
+        messages.info(request,
+                      "Your order has been placed successfully and payment instructions have been sent to your email.")
         return redirect('order_success')
     else:
         messages.error(request, "No active order found.")
