@@ -6,7 +6,6 @@ from PIL import Image
 class Client(models.Model):
     first_name = models.CharField('Name', max_length=100)
     last_name = models.CharField('Surname', max_length=100)
-    # email = models.EmailField('Email', unique=True, max_length=255)
     phone_number = models.IntegerField(null=True, blank=True)
     address = models.CharField(max_length=50, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)

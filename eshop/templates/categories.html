@@ -7,11 +7,10 @@
 <div class="categories-list">
     {% for category in categories %}
       <div class="category">
-
         <h3>{{ category.name }} :</h3>
         {% if category.foto %}
-<a href="{% url 'category_products' category.id %}">
-                    <img class="card-img-top" style="width: 40%;" src="{{ category.foto.url }}" alt="{{ category.name }}"/></a>
+          <a href="{% url 'category_products' category.id %}">
+          <img class="card-img-top" style="width: 40%;" src="{{ category.foto.url }}" alt="{{ category.name }}"/></a>
           {% else %}
             <img class="card-img-top" style="width: 40%;" src="{% static 'img/no-image.png' %}"/>
           {% endif %}

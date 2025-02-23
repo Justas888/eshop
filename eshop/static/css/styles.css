@@ -7,7 +7,6 @@ body {
     margin-top: 10px;
 }
 
-
 .card {
   min-height: 200px;
   width: 100%;
@@ -42,7 +41,6 @@ body {
   object-fit: cover;
 }
 
-
 .card-title {
   font-size: 1.1rem;
   margin-bottom: 5px;
@@ -54,7 +52,6 @@ body {
   color: #333;
   margin-bottom: 0;
 }
-
 
 .pagination {
   margin-top: 20px;
@@ -81,7 +78,6 @@ body {
   .card {
     margin-bottom: 15px;
   }
-
   .pagination {
     font-size: 0.9rem;
   }
@@ -94,7 +90,7 @@ body {
 }
 
 .category-product .col-sm-6, .category-product .col-md-3 {
-  flex: 1 1 calc(50% - 15px); /* Dvi kortelės eilėje */
+  flex: 1 1 calc(50% - 15px);
   margin-bottom: 20px;
 }
 

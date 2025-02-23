@@ -9,6 +9,9 @@
         <p>{{ item.name }}</p>
         <p>Price: {{ item.price }} Eur</p>
         <p>Quantity: {{ item.quantity }}</p>
+         <form method="POST" action="{% url 'add_to_cart' product_id=product_id %}">
+        {% csrf_token %}
+        </form>
         <a href="{% url 'remove_from_cart' product_id %}" class="btn btn-danger">Remove</a>
       </div>
     {% endfor %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Main page - eShop{% endblock %}
 
 {% block content %}
@@ -7,8 +7,10 @@
     <h1>Welcome {{ user.username }}</h1>
 <p>We're glad you made it!</p>
 <p>Go ahead and check our products and if you find something you love, buy it!</p>
+<img src="{% static 'img/tools.png' %}" alt="Welcome Image" class="img-fluid" />
 {% else %}
     <h1>Welcome, guest</h1>
-<p>Please login or register to check our eShop content.</p>
+    <p>Please login or register to check our eShop content.</p>
+    <img src="{% static 'img/tools.png' %}" alt="Welcome Image" class="img-fluid" />
 {% endif %}
 {% endblock %}
