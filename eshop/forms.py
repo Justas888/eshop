@@ -17,4 +17,4 @@ class UserUpdateForm(forms.ModelForm):
 class ClientUpdateForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['address', 'phone_number']
+        fields = ['first_name', 'last_name', 'address', 'phone_number']

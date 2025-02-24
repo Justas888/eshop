@@ -9,12 +9,21 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('product__name',)
 
 
-admin.site.register(Client)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'user')
+
+
+class OrderItemsAdmin(admin.ModelAdmin):
+    list_display = ('products', 'quantity', 'orders')
+    list_filter = ('orders__clients',)
+
+
+admin.site.register(Client, ClientAdmin)
 admin.site.register(Category)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Review)
 admin.site.register(Order)
-admin.site.register(OrderItem)
+admin.site.register(OrderItem, OrderItemsAdmin)
 admin.site.register(Profile)
 
 

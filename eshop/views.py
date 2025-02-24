@@ -242,6 +242,15 @@ def checkout(request):
         )
     order_items = OrderItem.objects.filter(orders=order)
     order_items.delete()
+
+    for item in cart.values():
+        product = Product.objects.get(name=item['name'])
+        OrderItem.objects.create(
+            orders=order,
+            products=product,
+            quantity=item['quantity']
+        )
+
     send_mail(
         'Your Order Confirmation',
         f'Thank you for your order: The payment instructions are HERE.',

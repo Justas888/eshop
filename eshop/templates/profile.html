@@ -10,25 +10,34 @@
     {% csrf_token %}
 
     <div class="form-group">
-      <label for="id_email">Email</label>
+      <label >First name:</label>
+      {{ c_form.first_name }}
+    </div>
+
+    <div class="form-group">
+      <label>Last name:</label>
+      {{ c_form.last_name }}
+    </div>
+
+    <div class="form-group">
+      <label>Email:</label>
       {{ u_form.email }}
     </div>
 
     <div class="form-group">
-      <label for="id_picture">Profile Picture</label>
+      <label>Profile Picture</label>
       {{ p_form.picture }}
     </div>
 
     <div class="form-group">
-      <label for="id_address">Address:</label>
+      <label>Address:</label>
       {{ c_form.address }}
     </div>
 
     <div class="form-group">
-      <label for="id_phone_number">Phone Number:</label>
+      <label>Phone Number:</label>
       {{ c_form.phone_number }}
     </div>
-
     <div class="form-group">
       <button type="submit" class="btn btn-outline-success">Save changes</button>
       <a href="{% url 'home' %}" class="btn btn-outline-primary">Main page</a>
